@@ -1,16 +1,23 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: myapp-argo-application
+  name: myapp-argocd-application
   namespace: argocd
 spec:
+  destination:
+    namespace: my-nginx
+    server: https://kubernetes.default.svc
   project: default
   source:
-    chart: sealed-secrets
-    repoURL: https://github.com/Sheril5/argocd-helmchart.git
-    targetRevision: 1.16.1
     helm:
-      releaseName: sealed-secrets
-  destination:
-    server: "https://kubernetes.default.svc"
-    namespace: kubeseal
+      valueFiles:
+      - values.yaml
+    path: nginx-chart
+    repoURL: https://github.com/Sheril5/argocd-helmchart.git
+    targetRevision: HEAD
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: true
