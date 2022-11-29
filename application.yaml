@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     chart: sealed-secrets
-    repoURL: https://bitnami-labs.github.io/sealed-secrets
+    repoURL: https://github.com/Sheril5/argocd-helmchart.git
     targetRevision: 1.16.1
     helm:
       releaseName: sealed-secrets
