@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: my-nginx
+    namespace: mynginx
     server: https://kubernetes.default.svc
   project: default
   source:
